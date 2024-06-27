@@ -1,7 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include "app.h"
 #include "LineTracer.h"
-#include "LineTracer_Constants.h"
 #include <stdio.h>
 #include <iostream>
 
