@@ -9,5 +9,7 @@ APPL_LIBS += `pkg-config --libs opencv4`
 
 APPL_DIRS += $(mkfile_path)LineTracer
 
+
 INCLUDES += \
 	-I$(mkfile_path)LineTracer\
+	-I/usr/local/include/opencv4
