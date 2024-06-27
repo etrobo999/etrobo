@@ -1,4 +1,5 @@
 mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
+INCLUDE_DIRS = -I/usr/local/include/opencv4
 
 APPL_COBJS +=\
 LineTracer.o\
