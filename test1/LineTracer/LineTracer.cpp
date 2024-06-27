@@ -7,22 +7,20 @@
 /* 関数プロトタイプ宣言 */
 
 static void Camera(void);
-static void motor_cntrol(void);
+/*static void motor_cntrol(void);*/
 
 cv::Mat frame;
 
 /* ライントレースタスク(100msec周期で関数コールされる) */
 void tracer_task(intptr_t unused) {
     cv::VideoCapture camera(0);
-    camera();
-    motor_drive_control(steering_amount);
+    Camera(camera);
 
     /* タスク終了 */
     ext_tsk();
 }
 
 static void Camera(void){
-    bool detectionResults[10];
     camera >> frame;
 
     if (frame.empty()) {
@@ -41,7 +39,7 @@ static void Camera(void){
     }
     uint16_t detectionFlags = 0;
     for (int i = 0; i < 8; ++i) {
-        if(cv::countNonZero(frame(cv::Rect(XPoint[i], ALLB_Y1,XPoint[i] + B_W, ALLB_Y2))) >= 150 ){
+        if(cv::countNonZero(frame(cv::Rect(XPoint[i], B_W, ALLB_Y2))) >= 150 ){
             detectionFlags |= (1 << i);
         } else { 
             detectionFlags |= (0 << i);

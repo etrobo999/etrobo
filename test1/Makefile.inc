@@ -6,8 +6,7 @@ APPL_COBJS +=
 
 # C++言語のオブジェクトファイル
 APPL_CXXOBJS += \
-	LineTracer.o \
-	app.o
+	LineTracer.o
 
 # 使用するライブラリ
 APPL_LIBS += -lm
