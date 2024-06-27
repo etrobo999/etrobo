@@ -4,6 +4,7 @@ APPL_COBJS +=\
 LineTracer.o\
 
 APPL_LIBS += -lm
+APPL_LIBS += `pkg-config --libs opencv4`
 
 APPL_DIRS += $(mkfile_path)LineTracer
 

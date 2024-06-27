@@ -17,18 +17,17 @@ extern "C" {
 #define TRIMH (30)
 
 /*ブロックエリアの設定*/
-#define LB_X1 (540)
-#define LB_X2 (420) 
-#define LB_X3 (360) 
-#define LB_X4 (300) 
-#define LB_X5 (240) 
+#define LB_X1 (440)
+#define LB_X2 (360) 
+#define LB_X3 (240) 
+#define LB_X4 (200) 
 
-#define RB_X1 (600) 
-#define RB_X2 (660)
-#define RB_X3 (720) 
-#define RB_X4 (800) 
-#define RB_X5 (860)
-#define B_W (60)
+#define RB_X1 (520) 
+#define RB_X2 (600)
+#define RB_X3 (680) 
+#define RB_X4 (760) 
+#define B_W (80)
+
 #define ALLB_Y1 (0) 
 #define ALLB_Y2 (TRIMH)
 
@@ -45,3 +44,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
+#include "LineTracer_Constants.h"
