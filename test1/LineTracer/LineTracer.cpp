@@ -6,23 +6,21 @@
 
 /* 関数プロトタイプ宣言 */
 
-static void Camera(cv::VideoCapture camera);
+static void Capture(cv::VideoCapture camera);
 /*static void motor_cntrol(void);*/
-
-cv::Mat frame;
 
 /* ライントレースタスク(100msec周期で関数コールされる) */
 void tracer_task(intptr_t unused) {
     cv::VideoCapture camera(0);
-    Camera(camera);
+    Capture(camera);
 
     /* タスク終了 */
     ext_tsk();
 }
 
-static void Camera(cv::VideoCapture camera){
+static void Capture(cv::VideoCapture camera){
+    cv::Mat frame;
     camera >> frame;
-
     if (frame.empty()) {
         std::cerr << "Error: Frame is empty." << std::endl;
         return;
@@ -46,7 +44,7 @@ static void Camera(cv::VideoCapture camera){
         }
     }
     cv::imshow("Camera", frame);
-    
+    cv::waitKey(1);
     /*motor_cntrol(detectionFlags)*/
     return;
 }
