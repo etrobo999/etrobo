@@ -28,8 +28,8 @@ static const motor_port_t
 #define STACK_SIZE      (4096)
 #endif /* STACK_SIZE */
 
-#ifndef TRACER_STACK_SIZE
-#define TRACER_STACK_SIZE      (104857600)
+#ifndef TRACER_STACK_SIZE2
+#define TRACER_STACK_SIZE2      (104857600)
 #endif 
 
 #ifndef TOPPERS_MACRO_ONLY
