@@ -10,7 +10,7 @@ static void Capture(void);
 /*static void motor_cntrol(void);*/
 
 /* ライントレースタスク(100msec周期で関数コールされる) */
-void tracer_task(intptr_t &unused) {
+void tracer_task(intptr_t unused) {
     Capture();
 
     /* タスク終了 */
@@ -34,6 +34,7 @@ static void Capture(void){
     frame = frame(cv::Rect(0, TRIMY, frame.cols, TRIMH));
     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
     cv::threshold(frame, frame, THRESHOLDVALUE, MAXBINARYVALUE, cv::THRESH_BINARY_INV);
+    std::cerr << "threshold" << std::endl;
 
     
     for (int i = 0; i < 4; ++i) {
@@ -48,6 +49,7 @@ static void Capture(void){
             detectionFlags |= (0 << i);
         }
     }
+    std::cerr << "etectionFlags" << std::endl;
     /*motor_cntrol(detectionFlags)*/
     return;
 }
