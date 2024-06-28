@@ -6,7 +6,7 @@
 
 /* 関数プロトタイプ宣言 */
 
-static void Camera(void);
+static void Camera(cv::VideoCapture camera);
 /*static void motor_cntrol(void);*/
 
 cv::Mat frame;
@@ -20,7 +20,7 @@ void tracer_task(intptr_t unused) {
     ext_tsk();
 }
 
-static void Camera(void){
+static void Camera(cv::VideoCapture camera){
     camera >> frame;
 
     if (frame.empty()) {
@@ -34,12 +34,12 @@ static void Camera(void){
 
     
     for (int i = 0; i < 4; ++i) {
-        cv::rectangle(frame, upperLeftPoint[i], lowerRighPoint[i], cv::Scalar(0, 0, 255), 1);
+        cv::rectangle(frame, upperLeftPoint[i], lowerRightPoint[i], cv::Scalar(0, 0, 255), 1);
         
     }
     uint16_t detectionFlags = 0;
     for (int i = 0; i < 8; ++i) {
-        if(cv::countNonZero(frame(cv::Rect(XPoint[i], B_W, ALLB_Y2))) >= 150 ){
+        if(cv::countNonZero(frame(cv::Rect(XPoint[i], 0, B_W, ALLB_Y2))) >= 150 ){
             detectionFlags |= (1 << i);
         } else { 
             detectionFlags |= (0 << i);

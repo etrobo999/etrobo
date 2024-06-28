@@ -17,20 +17,20 @@ constexpr int THRESHOLDVALUE = 50;
 constexpr int MAXBINARYVALUE = 255;
 
 /*カメラのトリミング*/
-constexpr int TRIMY = 1220;
+constexpr int TRIMY = 280;
 constexpr int TRIMH = 30;
 
 /*ブロックエリアの設定*/
-constexpr int LB_X1 = 440;
-constexpr int LB_X2 = 360;
-constexpr int LB_X3 = 240;
-constexpr int LB_X4 = 200;
+constexpr int LB_X1 = 270;
+constexpr int LB_X2 = 220;
+constexpr int LB_X3 = 170;
+constexpr int LB_X4 = 120;
 
-constexpr int RB_X1 = 520;
-constexpr int RB_X2 = 600;
-constexpr int RB_X3 = 680;
-constexpr int RB_X4 = 760;
-constexpr int B_W = 80;
+constexpr int RB_X1 = 320;
+constexpr int RB_X2 = 370;
+constexpr int RB_X3 = 420;
+constexpr int RB_X4 = 470;
+constexpr int B_W = 50;
 constexpr int ALLB_Y1 = 0;
 constexpr int ALLB_Y2 = TRIMH;
 
