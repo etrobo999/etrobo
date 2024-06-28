@@ -34,6 +34,9 @@ constexpr int B_W = 50;
 constexpr int ALLB_Y1 = 0;
 constexpr int ALLB_Y2 = TRIMH;
 
+cv::VideoCapture camera(0);
+cv::Mat frame;
+
 /* ステアリング操舵量の係数 */
 constexpr float STEERING_COEF = 0.2F;
 

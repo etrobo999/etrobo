@@ -18,13 +18,10 @@ void tracer_task(intptr_t unused) {
 }
 
 static void Capture(void){
-    cv::VideoCapture camera(0);
-    if (!camera.isOpened()) {
+    if (camera.isOpened()) {
         std::cerr << "Error: Camera could not be opened." << std::endl;
         return;
     }
-
-    cv::Mat frame;
     camera >> frame;
     if (frame.empty()) {
         std::cerr << "Error: Frame is empty." << std::endl;
