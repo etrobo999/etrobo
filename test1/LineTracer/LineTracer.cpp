@@ -7,7 +7,7 @@
 /* 関数プロトタイプ宣言 */
 
 static void Capture(cv::VideoCapture &camera);
-static cv::VideoCapture camera;
+static 
 /*static void motor_cntrol(void);*/
 
 /* ライントレースタスク(100msec周期で関数コールされる) */
@@ -24,7 +24,6 @@ static void Capture(cv::VideoCapture &camera){
         std::cerr << "Error: Camera could not be opened." << std::endl;
         return;
     }
-
     cv::Mat frame;
     camera >> frame;
     if (frame.empty()) {
@@ -50,8 +49,9 @@ static void Capture(cv::VideoCapture &camera){
             detectionFlags |= (0 << i);
         }
     }
-    std::cerr << "etectionFlags" << std::endl;
+    std::cerr << detectionFlags << std::endl;
     /*motor_cntrol(detectionFlags)*/
+    camera.release();
     return;
 }
 /* 走行モータ制御 
