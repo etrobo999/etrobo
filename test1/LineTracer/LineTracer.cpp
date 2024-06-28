@@ -6,22 +6,26 @@
 
 /* 関数プロトタイプ宣言 */
 
-static void Capture(void);
+static void Capture(cv::VideoCapture &camera);
+static cv::VideoCapture camera;
 /*static void motor_cntrol(void);*/
 
 /* ライントレースタスク(100msec周期で関数コールされる) */
 void tracer_task(intptr_t unused) {
-    Capture();
+    Capture(camera);
 
     /* タスク終了 */
     ext_tsk();
 }
 
-static void Capture(void){
-    if (camera.isOpened()) {
+static void Capture(cv::VideoCapture &camera){
+    cv::VideoCapture camera(0);
+    if (!camera.isOpened()) {
         std::cerr << "Error: Camera could not be opened." << std::endl;
         return;
     }
+
+    cv::Mat frame;
     camera >> frame;
     if (frame.empty()) {
         std::cerr << "Error: Frame is empty." << std::endl;
