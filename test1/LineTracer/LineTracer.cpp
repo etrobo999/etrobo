@@ -68,16 +68,62 @@ static void Capture(void){
 static void motor_cntrol(uint8_t detectionFlags){
     switch (detectionFlags)
     {
-    case 0x00:
+    /*直進*/
+    case 0x18: /*0001 1000*/
+    case 0x1c: /*0001 1100*/
+    case 0x38: /*0011 1000*/
         ev3_motor_set_power(left_motor, 100);
         ev3_motor_set_power(right_motor, 100);
+        break;
+
+    /*微左カーブ*/
+    case 0x30: /*0011 0000*/
+    case 0x70: /*0111 0000*/
+        ev3_motor_set_power(left_motor, 85);
+        ev3_motor_set_power(right_motor, 100);
+        break;
+    
+    /*左カーブ*/
+    case 0x60: /*0110 0000*/
+    case 0xe0: /*1110 0000*/
+        ev3_motor_set_power(left_motor, 70);
+        ev3_motor_set_power(right_motor, 100);
+        break;
+    
+    /*特左カーブ*/
+    case 0xc0: /*1100 0000*/
+        ev3_motor_set_power(left_motor, 55);
+        ev3_motor_set_power(right_motor, 100);
+        break;
+    
+    /*微右カーブ*/
+    case 0x30: /*0000 1100*/
+    case 0x7c: /*0000 1110*/
+        ev3_motor_set_power(left_motor, 100);
+        ev3_motor_set_power(right_motor, 85);
+        break;
+
+    /*右カーブ*/
+    case 0x30: /*0011 0000*/
+    case 0x7c: /*0111 0000*/
+        ev3_motor_set_power(left_motor, 100);
+        ev3_motor_set_power(right_motor, 70);
+        break;
+
+    /*特右カーブ*/
+    case 0x30: /*0011 0000*/
+    case 0x7c: /*0111 0000*/
+        ev3_motor_set_power(left_motor, 100);
+        ev3_motor_set_power(right_motor, 55);
+        break;
+        
+    /*停止*/
     case 0Xff:
         ev3_motor_set_power(left_motor, 0);
-        ev3_motor_set_power(right_motor, 0);    
+        ev3_motor_set_power(right_motor, 0);
+        break;    
     default:
         break;
     }
-    ev3_motor_set_power(left_motor, 100);
-    ev3_motor_set_power(right_motor, 100);
     return;
 }
