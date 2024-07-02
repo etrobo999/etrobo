@@ -60,7 +60,7 @@ static void Capture(void){
     }
     std::bitset<8> binary(detectionFlags);
     std::cerr <<  "detectionFlags: " << binary << std::endl;
-    motor_cntrol(detectionFlags)
+    motor_cntrol(detectionFlags);
     camera.release();
     return;
 }
@@ -97,26 +97,25 @@ static void motor_cntrol(uint8_t detectionFlags){
         break;
     
     /*微右カーブ*/
-    case 0x30: /*0000 1100*/
-    case 0x7c: /*0000 1110*/
+    case 0x0c: /*0000 1100*/
+    case 0x0e: /*0000 1110*/
         ev3_motor_set_power(left_motor, 100);
         ev3_motor_set_power(right_motor, 85);
         break;
 
     /*右カーブ*/
-    case 0x30: /*0011 0000*/
-    case 0x7c: /*0111 0000*/
+    case 0x06: /*0000 0110*/
+    case 0x07: /*0000 0111*/
         ev3_motor_set_power(left_motor, 100);
         ev3_motor_set_power(right_motor, 70);
         break;
 
     /*特右カーブ*/
-    case 0x30: /*0011 0000*/
-    case 0x7c: /*0111 0000*/
+    case 0x03: /*0000 0011*/
         ev3_motor_set_power(left_motor, 100);
         ev3_motor_set_power(right_motor, 55);
         break;
-        
+
     /*停止*/
     case 0Xff:
         ev3_motor_set_power(left_motor, 0);
