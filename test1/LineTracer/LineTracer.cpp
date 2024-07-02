@@ -6,28 +6,39 @@
 
 /* 関数プロトタイプ宣言 */
 
-static void Capture(cv::VideoCapture &camera);
-static 
+static void Capture(void); 
 /*static void motor_cntrol(void);*/
 
 /* ライントレースタスク(100msec周期で関数コールされる) */
 void tracer_task(intptr_t unused) {
-    Capture(camera);
+    Capture();
 
     /* タスク終了 */
     ext_tsk();
 }
 
-static void Capture(cv::VideoCapture &camera){
+static void Capture(void){
     cv::VideoCapture camera(0);
+    int retry_count = 0;
+    const int max_retries = 5;
     if (!camera.isOpened()) {
         std::cerr << "Error: Camera could not be opened." << std::endl;
         return;
     }
     cv::Mat frame;
-    camera >> frame;
+    while (retry_count < max_retries) {
+        camera >> frame;
+        if (frame.empty()) {
+            std::cerr << "Error: Frame is empty. Retrying..." << std::endl;
+            retry_count++;
+            usleep(100000); // 100ms 待機してから再試行
+            continue;
+        }
+        break;
+    }
+
     if (frame.empty()) {
-        std::cerr << "Error: Frame is empty." << std::endl;
+        std::cerr << "Error: Frame is empty after maximum retries." << std::endl;
         return;
     }
     std::cout << "Cols: " << frame.cols << ", Rows: " << frame.rows << std::endl;
