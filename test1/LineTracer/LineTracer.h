@@ -17,7 +17,7 @@ constexpr int THRESHOLDVALUE = 50;
 constexpr int MAXBINARYVALUE = 255;
 
 /*カメラのトリミング*/
-constexpr int TRIMY = 280;
+constexpr int TRIMY = 170;
 constexpr int TRIMH = 30;
 
 /*ブロックエリアの設定*/
